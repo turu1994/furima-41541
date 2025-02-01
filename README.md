@@ -69,7 +69,7 @@ Things you may want to cover:
 - belongs_to :product
 - has_one :shipping_info
 
-## Shipping Information Table
+## Shipping_infos Table
 | Column         | Type       | Options                        |
 |---------------|-----------|--------------------------------|
 | postal_code   | string     | null: false                   |
