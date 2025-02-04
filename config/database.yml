@@ -16,7 +16,7 @@ test:
   username: root
   password:
   host: localhost
-  database: furima_41541_rails7_test
+  database: furima_41541_test
 
 production:
   <<: *default
