@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
   require 'rails_helper'
 
     before do
@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
       it '全ての項目が適切に入力されていれば登録できる' do
         expect(@user).to be_valid
       end
-      
+
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
