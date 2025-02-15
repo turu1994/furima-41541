@@ -37,10 +37,10 @@ Things you may want to cover:
 
 
 ### Associations
-- has_many :products
+- has_many :items
 - has_many :purchases
 
-## Products Table
+## items Table
 | Column          | Type       | Options                        |
 |----------------|-----------|--------------------------------|
 | name          | string     | null: false                   |
