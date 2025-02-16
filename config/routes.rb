@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   root to: 'items#index'
   resources :items
+<<<<<<< HEAD
+=======
+
+  # Defines the root path route ("/")
+  # root "posts#index"
+>>>>>>> parent of f396a42 (商品出品機能)
 end

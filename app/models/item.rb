@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+<<<<<<< HEAD
   extend ActiveHash::Associations::ActiveRecordExtensions  
   belongs_to :user
   has_one_attached :image
@@ -31,3 +32,6 @@ class Item < ApplicationRecord
 
   
 end
+=======
+end
+>>>>>>> parent of f396a42 (商品出品機能)

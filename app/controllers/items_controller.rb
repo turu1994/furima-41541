@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
+<<<<<<< HEAD
     #@items = Item.includes(:user).all
   end 
 
@@ -23,4 +24,8 @@ class ItemsController < ApplicationController
   end
   
 
+=======
+    #@items = Item.all
+  end
+>>>>>>> parent of f396a42 (商品出品機能)
 end
