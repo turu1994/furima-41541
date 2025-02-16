@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     if @item.save  
       redirect_to items_path, notice: "商品を出品しました"
     else
-      render :new 
+      render :new, status: :unprocessable_entity 
     end
   end
 
