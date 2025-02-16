@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
-<<<<<<< HEAD
+
     #@items = Item.includes(:user).all
   end 
 
@@ -22,10 +22,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_fee_id, :location_id, :shipping_day_id, :price)
   end
-  
-
-=======
-    #@items = Item.all
-  end
->>>>>>> parent of f396a42 (商品出品機能)
 end
