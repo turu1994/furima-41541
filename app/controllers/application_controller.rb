@@ -1,13 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
-<<<<<<< HEAD
-  before_action :authenticate_user!
-
-
-=======
->>>>>>> parent of 8e6878e (出品機能修正)
-
 
   private
 
