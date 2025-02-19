@@ -127,13 +127,16 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+    <%# 商品がある場合 %>
+     <% if @items.present? %>
+      <% @items.each do |item| %>
   <% if @items.present? %>
     <% @items.each do |item| %>
-      <li class='list'>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
 
+      <li class='list'>
+        <%= link_to item_path(item) do %>
+        <div class='item-img-content'>
+          <%= image_tag url_for(item.image), class: "item-img" %
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
@@ -155,6 +158,11 @@
         </div>
         <% end %>
       </li>
+      <% end %>
+  
+     <% else %>
+      <%# 商品がない場合 %>
+
     <% end %>
   <% else %>
       <li class='list'>
@@ -174,7 +182,12 @@
         </div>
         <% end %>
       </li>
+
+     <% end %>
+      <%# //商品がない場合 %>
+      
   <% end %>  
+
     </ul>
   </div>
   <%# /商品一覧 %>
