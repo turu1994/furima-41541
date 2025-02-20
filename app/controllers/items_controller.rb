@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update]  
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :redirect_unless_owner, only: [:edit, :update] # 他人の編集制限
+
   def index
     @items = Item.all.order(created_at: :desc)
   end 
@@ -31,8 +33,6 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
-
 
   private
   def item_params
@@ -41,6 +41,12 @@ class ItemsController < ApplicationController
   
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_unless_owner
+    if @item.user_id != current_user.id
+      redirect_to root_path, alert: "この商品は編集できません。"
+    end
   end
 
 end
