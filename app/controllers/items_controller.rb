@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show]
+  before_action :set_item, only: [:edit, :show, :update]  
   before_action :authenticate_user!, except: [:index, :show]
   def index
     @items = Item.all.order(created_at: :desc)
@@ -23,6 +23,16 @@ class ItemsController < ApplicationController
 
   def edit
   end
+
+  def update
+    if @item.update(item_params)  
+      redirect_to item_path(@item), notice: "商品情報を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
+
 
   private
   def item_params
