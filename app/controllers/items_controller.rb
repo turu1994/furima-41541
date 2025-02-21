@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]  
+  before_action :set_item, only: [:edit, :show, :update, :destroy]  
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :redirect_unless_owner, only: [:edit, :update]
+  before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
 
 
   def index
@@ -25,10 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
   end
 
-  end
 
   def update
     if @item.update(item_params)  
@@ -37,6 +35,15 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    if @item.destroy  
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      redirect_to root_path, alert: "商品を削除できませんでした"
+    end
+  end
+  
 
   private
   def item_params
