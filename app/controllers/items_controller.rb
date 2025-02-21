@@ -25,10 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
   end
 
-  end
 
   def update
     if @item.update(item_params)  
@@ -37,6 +35,16 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
 
   private
   def item_params
