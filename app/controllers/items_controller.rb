@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :show, :update]  
+  before_action :set_item, only: [:edit, :show, :update, :destroy]  
   before_action :authenticate_user!, except: [:index, :show]
   before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
 
@@ -37,11 +37,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
-    if @item.destroy
+    if @item.destroy  
       redirect_to root_path, notice: "商品を削除しました"
     else
-      redirect_to root_path, alert: "商品を削除できませんでした"    
+      redirect_to root_path, alert: "商品を削除できませんでした"
+    end
   end
   
 
