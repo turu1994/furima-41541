@@ -25,6 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+
+  end
+
   end
 
   def update
@@ -32,14 +35,6 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item), notice: "商品情報を更新しました"
     else
       render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @item.update(item_params)  
-      redirect_to item_path(@item), notice: "商品情報を更新しました"
-    else
-      render :edit, status: :unprocessable_entity  
     end
   end
 
@@ -53,14 +48,9 @@ class ItemsController < ApplicationController
   end
 
   def redirect_unless_owner
-    if @item.user_id != current_user.id
-      redirect_to root_path, alert: "この商品は編集できません。"
-    end
-  end
-    unless current_user.id == @item.user_id
+
+    unless @item.user_id == current_user.id
       redirect_to root_path, alert: "編集権限がありません。"
     end
   end
-  
-
 end
