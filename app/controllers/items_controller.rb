@@ -21,14 +21,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
   end
 
   def update
     if @item.update(item_params)  
       redirect_to item_path(@item), notice: "商品情報を更新しました"
     else
-      render :edit, status: :unprocessable_entity  
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -37,15 +39,13 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_fee_id, :location_id, :shipping_day_id, :price)
   end
 
-
   def set_item
     @item = Item.find(params[:id])
   end
 
   def redirect_unless_owner
-    unless current_user.id == @item.user_id
+    unless @item.user_id == current_user.id
       redirect_to root_path, alert: "編集権限がありません。"
     end
   end
-  
 end
