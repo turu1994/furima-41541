@@ -41,8 +41,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to root_path, notice: "商品を削除しました"
     else
-      render :edit, status: :unprocessable_entity
-    end
+      redirect_to root_path, alert: "商品を削除できませんでした"    
   end
   
 
