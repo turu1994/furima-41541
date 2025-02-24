@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]  
   before_action :authenticate_user!, except: [:index, :show]
   before_action :redirect_unless_owner, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold, only: [:edit, :update, :destroy]
+
 
 
   def index
@@ -58,6 +60,11 @@ class ItemsController < ApplicationController
 
     unless @item.user_id == current_user.id
       redirect_to root_path, alert: "編集権限がありません。"
+    end
+  end
+  def redirect_if_sold
+    if @item.order.present?
+      redirect_to root_path, alert: 'この商品の編集はできません'
     end
   end
 end
