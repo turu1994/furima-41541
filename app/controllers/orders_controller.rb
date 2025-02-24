@@ -1,13 +1,15 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_item
+  before_action :redirect_if_invalid_access
+
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_address = OrderAddress.new
-    @item = Item.find(params[:item_id]) 
   end
   
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.find(params[:item_id]) 
     if @order_address.valid?
       pay_item
       @order_address.save
@@ -34,4 +36,17 @@ class OrdersController < ApplicationController
     )
   end
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def redirect_if_invalid_access
+    if @item.order.present? && current_user.id != @item.user_id
+      redirect_to root_path, alert: "この商品はすでに売却済みです。"
+    end
+
+    if current_user.id == @item.user_id
+      redirect_to root_path, alert: "自身が出品した商品は購入できません。"
+    end
+  end
 end
