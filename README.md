@@ -56,20 +56,20 @@ Things you may want to cover:
 
 ### Associations
 - belongs_to :user
-- has_one :purchase
+- has_one :orders
 
-## Purchases Table
+## Orders Table
 | Column    | Type       | Options                        |
 |----------|-----------|--------------------------------|
 | user     | references | null: false, foreign_key: true |
-| product  | references | null: false, foreign_key: true |
+| item  | references | null: false, foreign_key: true |
 
 ### Associations
 - belongs_to :user
-- belongs_to :product
-- has_one :shipping_info
+- belongs_to :item
+- has_one :address
 
-## Shipping_infos Table
+## address Table
 | Column         | Type       | Options                        |
 |---------------|-----------|--------------------------------|
 | postal_code   | string     | null: false                   |
@@ -81,4 +81,4 @@ Things you may want to cover:
 | purchase      | references | null: false, foreign_key: true |
 
 ### Associations
-- belongs_to :purchase
+- belongs_to :orders
