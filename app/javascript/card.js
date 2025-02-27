@@ -1,6 +1,4 @@
 const pay = () => {
-  console.log("OK")
-  console.log("Public Key:", gon.public_key); 
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey) 
   const elements = payjp.elements();
@@ -20,7 +18,7 @@ const pay = () => {
         const token = response.id;
         //トークンの情報をフォームに含める
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='order_address[token]' type="hidden">`;
+        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       numberElement.clear();
