@@ -18,7 +18,7 @@ const pay = () => {
         const token = response.id;
         //トークンの情報をフォームに含める
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        const tokenObj = `<input value=${token} name="order_address[token]" type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       numberElement.clear();
